@@ -1,0 +1,46 @@
+.dashboard {
+    font-family: 'Arial', sans-serif;
+}
+
+.github-header {
+    background-color: #24292e;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.github-header img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.github-header h1 {
+    font-size: 24px;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.dashboard-column {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    
+}
+
+@media (min-width: 768px) {
+    .dashboard-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .dashboard-column {
+        width: 48%;
+        margin-bottom: 0;
+    }
+}
