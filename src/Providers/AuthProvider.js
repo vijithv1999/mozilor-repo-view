@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useMemo } from 'react';
 import axiosInstance from '../configs/axios.interspector';
 const AuthContext = createContext();
 
+
 export const useAuth = () => {
     return useContext(AuthContext);
 };
@@ -15,6 +16,7 @@ const AuthProvider = ({ children }) => {
 
     const isAuthenticated = useMemo(() => {
         let accessToken = localStorage.getItem('token')
+        
         let storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
             setUser(storedUser);
@@ -51,7 +53,7 @@ const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
-        setAccessToken(null);
+        setAccessToken(null)
 
     };
 

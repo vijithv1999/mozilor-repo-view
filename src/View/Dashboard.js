@@ -6,8 +6,10 @@ import BookmarkedRepos from '../Pages/BookmarkedRepos';
 import BookmarkProvider from '../Providers/BookmarkProvider';
 import BookMarkChart from '../Pages/BookmarkChart';
 import { useAuth } from '../Providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+    const Navgivate = useNavigate()
     const [bookmarkedRepos, setBookmarkedRepos] = useState([]);
     const { logout, user } = useAuth()
     const handleBookmark = (repo) => {
@@ -18,14 +20,22 @@ function Dashboard() {
         }
         return false;
     };
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[user])
+    }, [user])
 
     const handleRemoveBookmark = (repo) => {
         setBookmarkedRepos(bookmarkedRepos.filter((r) => r.id !== repo.id));
     };
 
+    const handleLogout = () => {
+        try {
+            logout()
+            Navgivate('/login')
+        } catch (error) {
+            console.log("Error occured", error)
+        }
+    }
     return (
 
         <BookmarkProvider>
@@ -39,7 +49,7 @@ function Dashboard() {
                 </div>
                 <div className="navbar-end">
                     <div className="navbar-item">
-                        <span className="button is-danger" onClick={logout}>
+                        <span className="button is-danger" onClick={handleLogout}>
                             Logout
                         </span>
                     </div>

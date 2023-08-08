@@ -49,7 +49,7 @@ const BookmarkProvider = ({ children }) => {
                             toast.error(response.data.message);
                         } else {
                             toast.success(response.data.message);
-                            getUserRepos();
+
                         }
                     },
                     error: (error) => {
@@ -57,6 +57,7 @@ const BookmarkProvider = ({ children }) => {
                     },
                 }
             );
+            await getUserRepos();
         } catch (error) {
             console.log("Error occurred.", error);
             toast.error(error.message);
@@ -91,7 +92,7 @@ const BookmarkProvider = ({ children }) => {
     const handleRemoveBookmark = async (repo) => {
         await axiosInstance.delete(`/remove-repo/${repo.id}`);
         setBookmarkedRepos(bookmarkedRepos.filter((r) => r.id !== repo.id));
-       
+
     };
 
 

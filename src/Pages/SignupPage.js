@@ -2,8 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import toast, { Toaster } from "react-hot-toast"
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../configs/axios.interspector';
 
 const SignupPage = () => {
+  const Navgivate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -70,7 +73,7 @@ const SignupPage = () => {
 
     try {
       console.log(formData);
-      let { data } = await axios.post('http://localhost:3001/user/signup', formData);
+      let { data } = await axiosInstance.post('/signup', formData);
       if (data.error) {
         toast.error(data.message);
       } else {
@@ -80,7 +83,8 @@ const SignupPage = () => {
           password: '',
           confirmPassword: '',
         })
-        toast.success('Successfully Created!');
+         toast.success('Successfully Created!');
+       
 
       }
     } catch (error) {
@@ -93,7 +97,7 @@ const SignupPage = () => {
   return (
     <>
       <div className="container">
-        <div className="columns is-centered" style={{marginTop:100}}>
+        <div className="columns is-centered" style={{ marginTop: 100 }}>
           <div className="column is-one-third">
             <div className="box">
               <h1 className="title has-text-centered">Sign Up</h1>
